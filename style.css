@@ -7,86 +7,73 @@
 body {
     margin: 0;
     padding: 0;
-    background: radial-gradient(circle at center, #1e293b, #0f172a);
+    background: #0f172a;
     color: white;
-    font-family: 'Inter', system-ui, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
     overflow-x: hidden;
 }
 
-/* টপ সেন্টার বাটন */
 .top-nav {
     position: fixed;
-    top: 30px;
+    top: 25px;
     left: 0;
     width: 100%;
     display: flex;
     justify-content: center;
-    z-index: 9999;
+    z-index: 10000;
 }
 
 .music-btn.big-btn {
-    padding: 18px 45px;
+    padding: 18px 40px;
     font-size: 18px;
     border: none;
     border-radius: 50px;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    background: linear-gradient(135deg, var(--primary), var(--accent));
     color: #0f172a;
     font-weight: 800;
+    box-shadow: 0 10px 25px rgba(0, 242, 254, 0.4);
     cursor: pointer;
-    box-shadow: 0 10px 30px rgba(0, 242, 254, 0.4);
     display: flex;
     align-items: center;
-    gap: 12px;
-    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    gap: 10px;
 }
 
-.music-btn.active {
-    background: var(--success);
-    box-shadow: 0 0 25px rgba(0, 255, 136, 0.5);
-}
+.music-btn.active { background: var(--success); }
 
-.app-wrapper {
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 100px;
     width: 100%;
-    max-width: 1000px;
-    text-align: center;
-    padding: 20px;
-    margin-top: 80px;
 }
 
-header h1 {
+.glow-text {
     font-size: 2.2rem;
-    margin-bottom: 5px;
+    margin: 10px 0;
     background: linear-gradient(to right, var(--primary), var(--accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-/* ক্যামেরা ডিসপ্লে - ডিভাইস অনুযায়ী বড় হবে */
-.camera-card {
+/* ক্যামেরা ডিসপ্লে বড় করার মূল কোড */
+.camera-wrapper {
     position: relative;
-    width: 95vw;
-    max-width: 800px;
-    aspect-ratio: 16 / 9;
-    margin: 20px auto;
+    width: 100vw;          /* পুরো স্ক্রিন উইডথ */
+    height: 65vh;         /* স্ক্রিনের ৬৫% হাইট */
     background: #000;
-    border-radius: 24px;
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    margin-top: 10px;
     overflow: hidden;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
 }
 
 #output_canvas {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;    /* ক্যামেরা ইমেজকে পুরো এরিয়াতে ছড়িয়ে দিবে */
     transform: rotateY(180deg);
 }
 
-/* পপ-আপ ভিডিও */
 #video-popup {
     position: absolute;
     top: 50%;
@@ -95,56 +82,18 @@ header h1 {
     width: 85%;
     max-width: 400px;
     background: #000;
-    border-radius: 20px;
+    border-radius: 15px;
     border: 3px solid var(--primary);
-    box-shadow: 0 0 60px rgba(0, 242, 254, 0.6);
-    z-index: 1000;
-    transition: 0.4s ease;
+    z-index: 999;
 }
 
-#video-popup.hidden {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.5);
-    pointer-events: none;
-}
+#video-popup.hidden { opacity: 0; pointer-events: none; transform: translate(-50%, -50%) scale(0.8); }
 
-#video-popup video {
-    width: 100%;
-    display: block;
-    border-radius: 0 0 17px 17px;
-}
+#video-popup video { width: 100%; border-radius: 0 0 12px 12px; display: block; }
 
-.popup-header {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 10px 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 12px;
-    letter-spacing: 1px;
-}
+.popup-header { background: rgba(255,255,255,0.1); padding: 8px 15px; display: flex; justify-content: space-between; font-size: 10px; }
 
-.dot {
-    width: 10px;
-    height: 10px;
-    background: #ff4b2b;
-    border-radius: 50%;
-    animation: blink 1s infinite;
-}
-
+.dot { width: 8px; height: 8px; background: red; border-radius: 50%; animation: blink 1s infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 
-footer {
-    margin-top: 20px;
-    color: #64748b;
-    font-size: 0.9rem;
-}
-
-/* মোবাইল মিডিয়া কোয়েরি */
-@media (max-width: 600px) {
-    .camera-card {
-        aspect-ratio: 4 / 5; /* মোবাইলে লম্বালম্বি দেখাবে */
-    }
-    header h1 { font-size: 1.6rem; }
-    .music-btn.big-btn { padding: 15px 30px; font-size: 16px; }
-}
+footer { padding: 20px; color: #64748b; }
