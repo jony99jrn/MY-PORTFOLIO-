@@ -5,7 +5,6 @@ const popup = document.getElementById('video-popup');
 const statusText = document.getElementById('status-text');
 const musicBtn = document.getElementById('music-control');
 
-// ভিডিও অবজেক্ট লিস্ট
 const videos = {
     cat: document.getElementById('video-cat'),
     dipjol: document.getElementById('video-dipjol'),
@@ -14,7 +13,6 @@ const videos = {
 
 let isAudioEnabled = false;
 
-// মিউজিক কন্ট্রোল
 musicBtn.addEventListener('click', () => {
     isAudioEnabled = !isAudioEnabled;
     Object.values(videos).forEach(v => v.muted = !isAudioEnabled);
@@ -23,39 +21,32 @@ musicBtn.addEventListener('click', () => {
 });
 
 function onResults(results) {
-    // ক্যানভাস সাইজ রিসাইজ করা (যদি দরকার হয়)
-    canvasElement.width = canvasElement.clientWidth;
-    canvasElement.height = canvasElement.clientHeight;
+    // ক্যানভাস ইন্টারনাল সাইজকে ডিসপ্লে সাইজের সমান করা
+    canvasElement.width = canvasElement.offsetWidth;
+    canvasElement.height = canvasElement.offsetHeight;
 
     canvasCtx.save();
     canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+    
+    // ভিডিওটি পুরো ক্যানভাস জুড়ে ড্র করা
     canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
 
     if (results.multiHandLandmarks && results.multiHandLandmarks.length > 0) {
         const landmarks = results.multiHandLandmarks[0];
-        
-        // জেসচার ড্রয়িং
         drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, {color: '#ffffff', lineWidth: 2});
 
-        // আঙুলের লজিক
         const indexUp = landmarks[8].y < landmarks[6].y;
         const middleUp = landmarks[12].y < landmarks[10].y;
         const ringUp = landmarks[16].y < landmarks[14].y;
         const pinkyUp = landmarks[20].y < landmarks[18].y;
 
-        // ১. 🖐️ (Open Palm/Hi) -> Dipjol
         if (indexUp && middleUp && ringUp && pinkyUp) {
             playVideo('dipjol', "সালাম নিন বড় ভাই! 🖐️");
-        } 
-        // ২. 🤟 (Rock On) -> Scuba Cat
-        else if (indexUp && pinkyUp && !middleUp && !ringUp) {
+        } else if (indexUp && pinkyUp && !middleUp && !ringUp) {
             playVideo('cat', "Scuba Cat মোড অন! 🤟");
-        }
-        // ৩. ☝️ (Index Finger) -> New Video
-        else if (indexUp && !middleUp && !ringUp && !pinkyUp) {
+        } else if (indexUp && !middleUp && !ringUp && !pinkyUp) {
             playVideo('newVid', "নতুন ভিডিও চলছে! ☝️");
-        }
-        else {
+        } else {
             stopVideos();
         }
     } else {
@@ -64,7 +55,7 @@ function onResults(results) {
     canvasCtx.restore();
 }
 
-function playVideo(key, message) {
+function playVideo(key, msg) {
     Object.keys(videos).forEach(k => {
         if (k === key) {
             videos[k].style.display = 'block';
@@ -75,7 +66,7 @@ function playVideo(key, message) {
         }
     });
     popup.classList.remove('hidden');
-    statusText.innerText = message;
+    statusText.innerText = msg;
     statusText.style.color = "#00f2fe";
 }
 
@@ -88,24 +79,12 @@ function stopVideos() {
     }
 }
 
-const hands = new Hands({
-    locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`
-});
-
-hands.setOptions({
-    maxNumHands: 1,
-    modelComplexity: 1,
-    minDetectionConfidence: 0.7,
-    minTrackingConfidence: 0.7
-});
-
+const hands = new Hands({ locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}` });
+hands.setOptions({ maxNumHands: 1, modelComplexity: 1, minDetectionConfidence: 0.7, minTrackingConfidence: 0.7 });
 hands.onResults(onResults);
 
 const camera = new Camera(videoElement, {
-    onFrame: async () => {
-        await hands.send({image: videoElement});
-    },
-    width: 1280,
-    height: 720
+    onFrame: async () => { await hands.send({image: videoElement}); },
+    width: 1280, height: 720
 });
 camera.start();
