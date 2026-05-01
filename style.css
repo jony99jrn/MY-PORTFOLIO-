@@ -75,15 +75,24 @@ header h1 {
 /* প্রফেশনাল ভিডিও পপ-আপ */
 #video-popup {
     position: absolute;
-    top: 30px;
-    right: 30px;
-    width: 220px;
-    background: rgba(0, 0, 0, 0.8);
-    border-radius: 15px;
-    border: 2px solid var(--primary);
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 10px 30px rgba(0, 242, 254, 0.3);
+    /* আপনার ছবির মতো উপরে-বামে বা ডানে সেট করতে পারেন */
+    top: 20%; 
+    right: 10%; 
+    width: 300px; /* সাইজ বাড়িয়ে দিন যাতে পরিষ্কার দেখা যায় */
+    height: auto;
+    background: rgba(0, 0, 0, 0.5); /* হালকা ট্রান্সপারেন্ট ব্যাকগ্রাউন্ড */
+    border: 3px solid #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    z-index: 999; /* যেন ভিডিওটি সবার উপরে থাকে */
+    transition: all 0.3s ease;
+}
+
+#popup-video {
+    width: 100%;
+    border-radius: 17px;
+    display: block;
+    object-fit: cover; /* ভিডিওটি ফ্রেমের সাথে সুন্দরভাবে সেট হবে */
 }
 
 #video-popup.hidden {
