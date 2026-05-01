@@ -1,7 +1,6 @@
 :root {
     --primary: #00f2fe;
     --accent: #4facef;
-    --bg: #0f172a;
 }
 
 body {
@@ -19,7 +18,7 @@ body {
 
 .top-nav {
     position: fixed;
-    top: 40px;
+    top: 30px;
     left: 0;
     width: 100%;
     display: flex;
@@ -29,30 +28,30 @@ body {
 
 .music-btn.big-btn {
     padding: 20px 50px;
-    font-size: 20px;
+    font-size: 18px;
     border: none;
     border-radius: 60px;
     background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
     color: #0f172a;
     font-weight: 800;
     cursor: pointer;
-    box-shadow: 0 10px 30px rgba(0, 242, 254, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 242, 254, 0.4);
     display: flex;
     align-items: center;
     gap: 12px;
+    transition: 0.3s;
 }
 
 .music-btn.active { background: #00ff88; }
 
 .camera-card {
     position: relative;
-    width: 90vw; /* মোবাইলের জন্য উইডথ অ্যাডজাস্ট করা হয়েছে */
-    max-width: 640px;
-    aspect-ratio: 4/3;
+    width: 90vw;
+    max-width: 720px;
     background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.1);
 }
 
 #output_canvas {
@@ -66,17 +65,20 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 70%;
+    width: 75%;
     background: #000;
-    border-radius: 15px;
-    border: 2px solid var(--primary);
+    border-radius: 20px;
+    border: 3px solid var(--primary);
+    box-shadow: 0 0 50px rgba(0, 242, 254, 0.6);
     z-index: 1000;
-    transition: 0.4s;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-#video-popup.hidden { opacity: 0; visibility: hidden; transform: translate(-50%, -50%) scale(0.5); }
+#video-popup.hidden { opacity: 0; transform: translate(-50%, -50%) scale(0.5); pointer-events: none; }
 
-#popup-video { width: 100%; display: block; border-radius: 12px; }
+#video-popup video { width: 100%; display: block; border-radius: 0 0 17px 17px; }
 
-.dot { width: 8px; height: 8px; background: red; border-radius: 50%; animation: blink 1s infinite; }
+.popup-header { background: rgba(255, 255, 255, 0.1); padding: 10px 15px; display: flex; justify-content: space-between; font-size: 12px; }
+
+.dot { width: 8px; height: 8px; background: #ff4b2b; border-radius: 50%; animation: blink 1s infinite; }
 @keyframes blink { 50% { opacity: 0; } }
