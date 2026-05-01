@@ -107,10 +107,10 @@ header h1 {
 /* ভিডিও পপ-আপ (Center) */
 #video-popup {
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 350px;
+    width: 450px;
     background: rgba(0, 0, 0, 0.9);
     border-radius: 20px;
     border: 3px solid var(--primary);
