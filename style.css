@@ -10,47 +10,58 @@ body {
     padding: 0;
     background: radial-gradient(circle at center, #1e293b, #0f172a);
     color: white;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    overflow: hidden;
 }
 
-/* মিউজিক বাটন স্টাইল */
-.music-btn {
+/* বাটন পজিশনিং (Top Center) */
+.top-nav {
     position: fixed;
-    top: 20px;
-    left: 20px;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
     z-index: 9999;
-    padding: 12px 20px;
+}
+
+/* বড় মিউজিক বাটন স্টাইল */
+.music-btn.big-btn {
+    padding: 22px 50px;
+    font-size: 20px;
+    letter-spacing: 2px;
     border: none;
-    border-radius: 50px;
+    border-radius: 60px;
     background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
     color: #0f172a;
-    font-weight: bold;
+    font-weight: 800;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
-    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 242, 254, 0.5);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 15px;
+    text-transform: uppercase;
 }
 
-.music-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 242, 254, 0.6);
+.music-btn.big-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 40px rgba(0, 242, 254, 0.8);
 }
 
 .music-btn.active {
-    background: #00ffcc;
-    box-shadow: 0 4px 15px rgba(0, 255, 204, 0.4);
+    background: #00ff88;
 }
 
 .app-wrapper {
     width: 90%;
     max-width: 1000px;
     text-align: center;
+    margin-top: 80px; /* বাটনের জন্য জায়গা রাখা */
 }
 
 header h1 {
@@ -63,14 +74,7 @@ header h1 {
 
 #status-text {
     color: #94a3b8;
-    font-weight: 300;
-    letter-spacing: 1px;
-}
-
-.main-content {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
+    margin-bottom: 20px;
 }
 
 .camera-card {
@@ -80,7 +84,6 @@ header h1 {
     border-radius: 24px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 #webcam {
@@ -101,19 +104,19 @@ header h1 {
     pointer-events: none;
 }
 
-/* ভিডিও পপ-আপ সেন্টারে */
+/* ভিডিও পপ-আপ (Center) */
 #video-popup {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 320px;
-    background: rgba(0, 0, 0, 0.8);
+    width: 350px;
+    background: rgba(0, 0, 0, 0.9);
     border-radius: 20px;
     border: 3px solid var(--primary);
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 0 50px rgba(0, 242, 254, 0.6);
+    transition: all 0.4s ease-in-out;
+    box-shadow: 0 0 60px rgba(0, 242, 254, 0.6);
     z-index: 1000;
 }
 
@@ -123,9 +126,14 @@ header h1 {
     pointer-events: none;
 }
 
+#popup-video {
+    width: 100%;
+    display: block;
+}
+
 .popup-header {
     background: rgba(255, 255, 255, 0.1);
-    padding: 8px 15px;
+    padding: 10px 15px;
     font-size: 12px;
     display: flex;
     justify-content: space-between;
@@ -133,8 +141,8 @@ header h1 {
 }
 
 .dot {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     background: #ff4b2b;
     border-radius: 50%;
     animation: blink 1s infinite;
@@ -142,13 +150,7 @@ header h1 {
 
 @keyframes blink { 50% { opacity: 0; } }
 
-#popup-video {
-    width: 100%;
-    display: block;
-}
-
 footer {
     margin-top: 2rem;
     color: #64748b;
-    font-size: 0.9rem;
 }
