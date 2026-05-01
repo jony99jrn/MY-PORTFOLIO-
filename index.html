@@ -1,1 +1,46 @@
 
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gesture Pro | Interactive AI</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils"></script>
+</head>
+<body>
+
+    <div class="app-wrapper">
+        <header>
+            <h1>AI Gesture Control</h1>
+            <p id="status-text">ক্যামেরার সামনে 🤟 সাইনটি দেখান</p>
+        </header>
+
+        <main class="main-content">
+            <div class="camera-card">
+                <video id="webcam" autoplay playsinline></video>
+                <canvas id="output_canvas"></canvas>
+                
+                <div id="video-popup" class="hidden">
+                    <div class="popup-header">
+                        <span>Live Stream</span>
+                        <div class="dot"></div>
+                    </div>
+                    <video id="popup-video" loop muted playsinline>
+                        <source src="InShot_20260501_131218569.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 Powered by MediaPipe AI</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
