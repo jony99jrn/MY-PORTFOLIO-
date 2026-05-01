@@ -2,7 +2,7 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Gesture Pro | JRN STUDIO</title>
     <link rel="stylesheet" href="style.css">
     
@@ -18,37 +18,26 @@
         </button>
     </div>
 
-    <div class="app-wrapper">
+    <div class="app-container">
         <header>
-            <h1>AI Gesture Control</h1>
+            <h1 class="glow-text">AI Gesture Control</h1>
             <p id="status-text">🤟, 🖐️ অথবা ☝️ সাইনটি দেখান</p>
         </header>
 
-        <main class="main-content">
-            <div class="camera-card">
-                <video id="webcam" autoplay playsinline style="display: none;"></video>
-                <canvas id="output_canvas"></canvas>
-                
-                <div id="video-popup" class="hidden">
-                    <div class="popup-header">
-                        <span id="popup-title">LIVE STREAM</span>
-                        <div class="dot"></div>
-                    </div>
-                    
-                    <video id="video-cat" loop playsinline style="display: none;">
-                        <source src="InShot_20260501_131218569.mp4" type="video/mp4">
-                    </video>
-
-                    <video id="video-dipjol" loop playsinline style="display: none;">
-                        <source src="Assalamu Alaikum Boro Bhai Dipjol _ Dipjol funny _ Bangla Meme Template(360P).mp4" type="video/mp4">
-                    </video>
-
-                    <video id="video-new" loop playsinline style="display: none;">
-                        <source src="InShot_20260501_181348351.mp4" type="video/mp4">
-                    </video>
+        <div class="camera-wrapper">
+            <video id="webcam" autoplay playsinline style="display: none;"></video>
+            <canvas id="output_canvas"></canvas>
+            
+            <div id="video-popup" class="hidden">
+                <div class="popup-header">
+                    <span>LIVE STREAM</span>
+                    <div class="dot"></div>
                 </div>
+                <video id="video-cat" loop playsinline style="display: none;"><source src="InShot_20260501_131218569.mp4" type="video/mp4"></video>
+                <video id="video-dipjol" loop playsinline style="display: none;"><source src="Assalamu Alaikum Boro Bhai Dipjol _ Dipjol funny _ Bangla Meme Template(360P).mp4" type="video/mp4"></video>
+                <video id="video-new" loop playsinline style="display: none;"><source src="InShot_20260501_181348351.mp4" type="video/mp4"></video>
             </div>
-        </main>
+        </div>
 
         <footer>
             <p>&copy; 2026 Powered by MediaPipe AI | <strong>JRN STUDIO</strong></p>
