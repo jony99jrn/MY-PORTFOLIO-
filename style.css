@@ -75,24 +75,30 @@ header h1 {
 /* প্রফেশনাল ভিডিও পপ-আপ */
 #video-popup {
     position: absolute;
-    /* আপনার ছবির মতো উপরে-বামে বা ডানে সেট করতে পারেন */
-    top: 20%; 
-    right: 10%; 
-    width: 300px; /* সাইজ বাড়িয়ে দিন যাতে পরিষ্কার দেখা যায় */
-    height: auto;
-    background: rgba(0, 0, 0, 0.5); /* হালকা ট্রান্সপারেন্ট ব্যাকগ্রাউন্ড */
-    border: 3px solid #ffffff;
+    top: 50%; /* উপর থেকে ৫০% দূরে */
+    left: 50%; /* বাম থেকে ৫০% দূরে */
+    transform: translate(-50%, -50%); /* একদম নিখুঁত মাঝখানে রাখার জন্য */
+    
+    width: 350px; /* ভিডিওর সাইজ */
+    background: rgba(0, 0, 0, 0.7); /* হালকা কালো ব্যাকগ্রাউন্ড */
+    border: 3px solid #00f2fe; /* নিওন বর্ডার */
     border-radius: 20px;
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
-    z-index: 999; /* যেন ভিডিওটি সবার উপরে থাকে */
-    transition: all 0.3s ease;
+    box-shadow: 0 0 50px rgba(0, 242, 254, 0.6);
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+}
+
+/* যখন ভিডিওটি লুকানো থাকবে */
+#video-popup.hidden {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5); /* মাঝখানে থেকেই ছোট হয়ে মিলিয়ে যাবে */
+    pointer-events: none;
 }
 
 #popup-video {
     width: 100%;
-    border-radius: 17px;
     display: block;
-    object-fit: cover; /* ভিডিওটি ফ্রেমের সাথে সুন্দরভাবে সেট হবে */
 }
 
 #video-popup.hidden {
