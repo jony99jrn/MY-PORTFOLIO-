@@ -79,7 +79,7 @@ header h1 {
     left: 50%; /* বাম থেকে ৫০% দূরে */
     transform: translate(-50%, -50%); /* একদম নিখুঁত মাঝখানে রাখার জন্য */
     
-    width: 250px; /* ভিডিওর সাইজ */
+    width: 300px; /* ভিডিওর সাইজ */
     background: rgba(0, 0, 0, 0.7); /* হালকা কালো ব্যাকগ্রাউন্ড */
     border: 3px solid #00f2fe; /* নিওন বর্ডার */
     border-radius: 20px;
