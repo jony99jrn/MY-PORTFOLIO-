@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -12,6 +11,10 @@
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils"></script>
 </head>
 <body>
+
+    <button id="music-control" class="music-btn">
+        <span id="music-icon">🔈</span> Enable Music
+    </button>
 
     <div class="app-wrapper">
         <header>
@@ -29,7 +32,7 @@
                         <span>Live Stream</span>
                         <div class="dot"></div>
                     </div>
-                    <video id="popup-video" loop muted playsinline>
+                    <video id="popup-video" loop playsinline>
                         <source src="InShot_20260501_131218569.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -37,7 +40,7 @@
         </main>
 
         <footer>
-            <p>&copy; 2026 Powered by MediaPipe AI</p>
+            <p>&copy; 2026 Powered by MediaPipe AI | JRN STUDIO</p>
         </footer>
     </div>
 
